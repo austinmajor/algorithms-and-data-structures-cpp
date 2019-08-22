@@ -1,0 +1,15 @@
+CS 400 Lab 1
+
+Implement a class named DynamicArray that has following members: 
+•	A pointer to hold a dynamically allocated array, of type int. 
+•	A member variable to hold the size of the array. 
+•	A default constructor, which will allocate an array of size 10
+•	A parameterized constructor, which takes a size and use the size to allocate array. 
+•	A copy constructor, which performs deep copy. 
+•	A copy assignment operator, which performs deep copy and supports self-assignment of the form x = x. See reference: https://stackoverflow.com/questions/4172722/what-is-the-rule-of-three 
+•	A destructor that recycles allocated memory
+•	A member function that fills array with random numbers.
+•	A member function that prints all elements from the array. 
+•	A member function that performs insertion sort. 
+
+Lab check: present and explain your code to teaching assistant by 08/28 (Wednesday). 
