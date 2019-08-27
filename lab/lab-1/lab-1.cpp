@@ -21,11 +21,11 @@ public:
   DynamicArray()
   {
     this->size = 10;
-    this->arr = new int[size];
+    this->arr = new int[this->size];
   }
 
   // Paramterized Constructor
-  // Retrieves the size and uses the size to allocate an array
+  // Retrieves the size and uses it to allocate an array
   DynamicArray(int size)
   {
     this->size = size;
@@ -34,66 +34,68 @@ public:
 
   // Copy Constructor
   // Performs deep copy
-  // Not sure on this
-  // this->size
   DynamicArray(const DynamicArray &obj)
   {
-    size = obj.size;
-    arr = new int[size];
-    for (int i = 0; i < size; i++)
+    this->size = obj.size;
+    this->arr = new int[this->size];
+    for (int i = 0; i < this->size; i++)
     {
-      arr[i] = obj.arr[i];
+      this->arr[i] = obj.arr[i];
     }
   }
 
   // Copy Assignment Operator
   // Performs a deep copy and supports self-assignment of the form x = x
-  // https://stackoverflow.com/questions/4172722/what-is-the-rule-of-three
+  // DynamicArray::operator=(const DynamicArray &obj)
+  // {
+  //   if (this != &obj)
+  //   {
+  //     arr = new int[obj.size];
+  //     size = obj.size;
+  //     for (int i = 0; i < size; i++)
+  //       arr[i] = obj.arr[i];
+  //   }
+  //   return *this;
+  // }
 
   // Destructor
   // Recycles allocated memory
   ~DynamicArray()
   {
-    // for loop delete arr[i]
-    // not sure on this syntax
-    delete[] arr;
+    delete[] this->arr;
   }
 
-  // Member Functions
+  // Member Function
   // Fills array with random #'s from 0-9
-  // This -> size ??
-  void fillArray()
+  void FillArray()
   {
-    int i;
-    for (i = 0; i < size; i++)
+    for (int i = 0; i < this->size; i++)
     {
-      arr[i] = rand() % 9;
+      this->arr[i] = rand() % 9;
     }
   }
 
+  // Member Function
   // Insertion Sort
   // Complexity: O(n^2)
-  // this -> size ??
-  void sortArray()
+  void SortArray()
   {
-    int i, j;
-    for (i = 1; i < size; i++)
+    for (int i = 1; i < this->size; i++)
     {
-      for (j = i; j > 0 && arr[j] < arr[j - 1]; j--)
+      for (int j = i; j > 0 && this->arr[j] < this->arr[j - 1]; j--)
       {
-        swap(arr[j], arr[j - 1]);
+        swap(this->arr[j], this->arr[j - 1]);
       }
     }
   }
 
+  // Member Function
   // Prints all elements in the array
-  // this -> size ??
-  void printArray()
+  void PrintArray()
   {
-    int i;
-    for (i = 0; i < size; i++)
+    for (int i = 0; i < this->size; i++)
     {
-      cout << arr[i] << " ";
+      cout << this->arr[i] << " ";
     }
   }
 };
@@ -101,9 +103,9 @@ public:
 int main()
 {
   DynamicArray a;
-  a.fillArray();
-  a.sortArray();
-  a.printArray();
+  a.FillArray();
+  a.SortArray();
+  a.PrintArray();
 
   return 0;
 }
