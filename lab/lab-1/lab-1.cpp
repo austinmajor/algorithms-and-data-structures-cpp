@@ -3,12 +3,12 @@
 using namespace std;
 
 class DynamicArray{
-public:
+private:
   // Member variables
-  // these need to be private
   int * arr;
   int size;
 
+public:
   // Default Constructor
   DynamicArray()
   {
@@ -20,7 +20,7 @@ public:
   {
     arr = new int[size];
   }
-  
+
   // Copy Constructor
   DynamicArray(int * d)
   {
@@ -28,38 +28,38 @@ public:
   }
 
   // Copy Assignment Operator
-  DynamicArray(const DynamicArray&)
+  // DynamicArray(const DynamicArray&)
 
   // Destructor
   ~DynamicArray()
   {
+    // for loop delete arr[i]
     cout << "Destructor called" << endl;
   }
 
   // Member Functions
-  void fill()
+  void fillArray()
   {
     int i;
-    for(i = 0; i < 10; i++)
+    for(i = 0; i < size; i++)
     {
-      arr[i] = rand();
+      arr[i] = rand() % 9;
     }
   }
 
-  void sort()
+  void sortArray()
   {
     int i, j;
-    for(i = 1; i < n; i++)
+    for(i = 1; i < size; i++)
     {
       for(j = i; j > 0 && arr[j] < arr[j-1]; j--)
       {
         swap(arr[j], arr[j-1]);
-        printArray(arr, n);
       }
     }
   }
 
-  void print(int size)
+  void printArray()
   {
     int i;
     for(i = 0; i < size; i++)
@@ -71,6 +71,10 @@ public:
 
 int main()
 {
+  DynamicArray a;
+  a.fillArray();
+  a.sortArray();
+  a.printArray();
 
   return 0;
 }
