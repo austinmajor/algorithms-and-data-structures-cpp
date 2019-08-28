@@ -2,6 +2,8 @@
 // Title: Insertion Sort with a Dynamic Array Class
 // Date: 8/22/19
 #include <iostream>
+// #include <cstdlib>
+// #include <ctime>
 
 using namespace std;
 
@@ -28,7 +30,7 @@ public:
   // Retrieves the size and uses it to allocate an array
   DynamicArray(int size)
   {
-    this->size = size;
+    this->size = this->size;
     this->arr = new int[size];
   }
 
@@ -46,17 +48,17 @@ public:
 
   // Copy Assignment Operator
   // Performs a deep copy and supports self-assignment of the form x = x
-  // DynamicArray::operator=(const DynamicArray &obj)
-  // {
-  //   if (this != &obj)
-  //   {
-  //     arr = new int[obj.size];
-  //     size = obj.size;
-  //     for (int i = 0; i < size; i++)
-  //       arr[i] = obj.arr[i];
-  //   }
-  //   return *this;
-  // }
+  DynamicArray& operator=(const DynamicArray &obj)
+  {
+    if (this != &obj)
+    {
+      arr = new int[obj.size];
+      this->size = obj.size;
+      for (int i = 0; i < this->size; i++)
+        arr[i] = obj.arr[i];
+    }
+    return *this;
+  }
 
   // Destructor
   // Recycles allocated memory
@@ -71,7 +73,7 @@ public:
   {
     for (int i = 0; i < this->size; i++)
     {
-      this->arr[i] = rand() % 9;
+      this->arr[i] = rand() % 10;
     }
   }
 
@@ -97,13 +99,16 @@ public:
     {
       cout << this->arr[i] << " ";
     }
+    cout << endl;
   }
 };
 
 int main()
 {
+  srand(time(NULL));
   DynamicArray a;
   a.FillArray();
+  a.PrintArray();
   a.SortArray();
   a.PrintArray();
 
