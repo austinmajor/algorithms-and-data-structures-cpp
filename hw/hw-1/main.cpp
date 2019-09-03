@@ -1,3 +1,7 @@
+// Author: Austin Major
+// Title: Quadratic Primes
+// Date: 9/2/19
+
 #include <iostream>
 
 using namespace std;
