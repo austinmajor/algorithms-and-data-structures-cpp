@@ -1,0 +1,38 @@
+CS 400 Assignment 2: applying ArrayList
+In this assignment, you are going to build a program that can help rental car companies to manage their rental fleet.
+
+Requirement:
+- build ArrayList class as container.
+- build Car class/structure to represent car objects.
+- An ArrayList object is to hold Car objects.
+
+Car class should have following fields:
+- id (int)
+- make (string)
+- model (string)
+- color (string)
+
+Instructions:
+- make up 15 cars and save them into a file: cars.data
+- load these cars' info from the file, initialize 15 Car objects, place them into the Arraylist
+- if new cars are added by user, they should be appended to the cars.data file when exiting the program
+- design a menu based user interface that allows following operations:
+-- search by id
+-- search by make
+-- search by model
+-- search by color
+-- add a new car (new car id cannot be same as existing ones)
+-- delete an existing car by id
+-- list all cars
+-- exit the program
+
+Grading:
+- compilable and meaningful attemps: 30 points.
+- functionality: 60 points (ArrayList 10p, Car 10p, file io 10p, menu functions 30p)
+- comments and indentation: 10 points.
+
+Submission:
+- submit related .h files, .cpp files and cars.data via blackboard. Do not forget to submit cars.data!
+
+
+
