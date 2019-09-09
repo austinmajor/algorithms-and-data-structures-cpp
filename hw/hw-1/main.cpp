@@ -24,6 +24,8 @@ int formulaThree(int n, int a, int b)
     return n * n + a * n + b;
 }
 
+// O(n/2) = O(n)
+// sqrt n + 1 is best
 bool isPrime(int n)
 {
     if (n <= 1)
@@ -31,7 +33,7 @@ bool isPrime(int n)
         return false;
     }
 
-    for (int i = 2; i < n; i++)
+    for (int i = 2; i < n/2; i++)
     {
         if (n % i == 0)
         {
@@ -77,6 +79,8 @@ void generateFormulaThree()
     {
         for (b = bMin; b <= bMax; b++)
         {
+            if(!isPrime(b)) continue;
+
             int n = 0;
             do
             {

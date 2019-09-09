@@ -1,0 +1,7 @@
+CS 400 Lab 2
+Present and explain your code by 09/09/2019 (Monday)
+- Your implementation of Array List
+- Your implementation of homework 1, especially:
+  o The isPrime() function. What is the time complexity of this function?
+  o Tune your program to limit variable b to prime numbers only, since when n is 0, all we have is 0*0 + a * 0 + b = b. Thus b must be a prime number.
+  o Tune your code to print all consecutive prime numbers from the longest sequence.
