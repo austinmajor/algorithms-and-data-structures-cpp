@@ -33,7 +33,7 @@ bool isPrime(int n)
         return false;
     }
 
-    for (int i = 2; i < n/2; i++)
+    for (int i = 2; i < n / 2; i++)
     {
         if (n % i == 0)
         {
@@ -54,7 +54,8 @@ void generateFormulaOne()
             cout << f << " ";
         }
     }
-    cout << endl << endl;
+    cout << endl
+         << endl;
 }
 
 void generateFormulaTwo()
@@ -67,7 +68,8 @@ void generateFormulaTwo()
             cout << f << " ";
         }
     }
-    cout << endl << endl;
+    cout << endl
+         << endl;
 }
 
 void generateFormulaThree()
@@ -79,7 +81,8 @@ void generateFormulaThree()
     {
         for (b = bMin; b <= bMax; b++)
         {
-            if(!isPrime(b)) continue;
+            if (!isPrime(b))
+                continue;
 
             int n = 0;
             do
@@ -98,7 +101,8 @@ void generateFormulaThree()
     }
     cout << "a = " << maxa << endl;
     cout << "b = " << maxb << endl;
-    cout << "Max prime #'s = " << maxn - 1 << endl << endl;
+    cout << "Max prime #'s = " << maxn - 1 << endl
+         << endl;
 }
 
 int main()
