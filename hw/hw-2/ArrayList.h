@@ -1,37 +1,36 @@
-#pragma once
-
 #ifndef ARRAYLIST_H
 #define ARRAYLIST_H
 
+#include <string>
+
 class ArrayList
 {
-public:
-	ArrayList();
-	ArrayList(int capacity);
-	ArrayList(const ArrayList& that);
-	ArrayList& operator=(const ArrayList& that);
-	~ArrayList();
+	private:
+		int *_arr;
+		int _capacity;
+		int _size;
 
-	// interface
-	void push_back(int num);
-	int pop();
-	int get(int index);
-	void set(int index, int num);
-	void add(int num);
-	void add(int index, int num);
-	void del(int index);
-	int size();
-	int capacity();
+		bool _isFull();
+		void _increaseCapacity();
+	public:
+		ArrayList();
+		ArrayList(int);
+		ArrayList(const ArrayList&);
+		ArrayList& operator=(const ArrayList&);
+		~ArrayList();
 
-	void traverse();
+		int size();
+		int capacity();
 
-private:
-	int* _pa;			// pointer of dynamic array's address
-	int _size;			// number of elements used. 1-based.
-	int _capacity;		// capcacity of the list
+		void add(int);
+		void add(int, int);
+		void set(int, int);
+		void push_back(int);
+		int pop();
+		int get(int);
+		void del(int);
 
-	bool _isFull();
-	void _doubleCapacity();
+		std::string print();
 };
 
 #endif

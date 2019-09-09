@@ -1,176 +1,238 @@
+#include <algorithm>
+#include <string>
+#include <sstream>
+
 #include "ArrayList.h"
-#include <iostream>
 
-ArrayList::ArrayList() {
-	_pa = new int[10];
-	_size = 0;
-	_capacity = 10;
+bool ArrayList::_isFull()
+{
+	if(this->_size >= this->_capacity)
+	{
+		return true;
+	}
+
+	return false;
 }
 
-ArrayList::ArrayList(int capacity) {
-	if (capacity > 0) {
-		_pa = new int[capacity];
-		_size = 0;
-		_capacity = capacity;
+void ArrayList::_increaseCapacity()
+{
+	this->_capacity = this->_capacity * 2;
+
+	int *temp = new (std::nothrow) int[this->_capacity];
+	if(!temp)
+	{
+		throw "failed to dynamically allocate memory";
 	}
-	else {
-		ArrayList();
+
+	for(int i = 0; i < this->_size; i++)
+	{
+		temp[i] = this->_arr[i];
+	}
+
+	delete[] this->_arr;
+	this->_arr = temp;
+}
+
+ArrayList::ArrayList() : _capacity(10), _size(0)
+{
+	this->_arr = new (std::nothrow) int[this->_capacity];
+	if(!this->_arr)
+	{
+		throw "failed to dynamically allocate memory for given size";
 	}
 }
 
-ArrayList::ArrayList(const ArrayList& that) {
-	this->_capacity = that._capacity;
-	this->_size = that._size;
-	// this->_pa = that._pa;	// shallow copy
-
-	this->_pa = new int[_capacity];
-
-	for (int i = 0; i < _size; ++i) {
-		this->_pa[i] = that._pa[i];
-	}
-}
-
-ArrayList& ArrayList::operator=(const ArrayList& that) {
-	if (this != &that){
-		int* temp = _pa;
-
-		this->_capacity = that._capacity;
-		this->_size = that._size;
-		this->_pa = new int[_capacity];
-		for (int i = 0; i < _size; ++i) {
-			this->_pa[i] = that._pa[i];
+ArrayList::ArrayList(int capacity) : _capacity(capacity), _size(0)
+{
+	if(capacity > 0)
+	{
+		this->_arr = new (std::nothrow) int[this->_capacity];
+		if(!this->_arr)
+		{
+			throw "failed to dynamically allocate memory for given size";
 		}
 
-		delete[] temp;
+		return;
+	}
+
+	// If an invalid capacity was given, use default constructor.
+	ArrayList();
+}
+
+ArrayList::ArrayList(const ArrayList &that): _capacity(that._capacity), _size(that._size)
+{
+	this->_arr = new (std::nothrow) int[this->_capacity];
+	if(!this->_arr)
+	{
+		throw "failed to dynamically allocate memory for given size";
+	}
+
+	for(int i = 0; i < this->_size; i++)
+	{
+		this->_arr[i] = that._arr[i];
+	}
+}
+
+ArrayList& ArrayList::operator=(const ArrayList &that)
+{
+	if(this != &that)
+	{
+		this->_capacity = that._capacity;
+		this->_size = that._size;
+
+		this->_arr = new (std::nothrow) int[this->_capacity];
+		if(!this->_arr)
+		{
+			throw "failed to dynamically allocate memory";
+		}
+
+		for(int i = 0; i < this->_size; i++)
+		{
+			this->_arr[i] = that._arr[i];
+		}
 	}
 
 	return *this;
 }
 
-ArrayList::~ArrayList() {
-	delete[] _pa;
+ArrayList::~ArrayList()
+{
+	delete[] this->_arr;
 }
 
-void ArrayList::push_back(int num) {
-	add(num);
+int ArrayList::size()
+{
+	return this->_size;
 }
 
-int ArrayList::pop() {
-	if (_size <= 0) {
-		std::cerr << "Fail to exec pop(). ArrayList empty.";
-		exit(1);
+int ArrayList::capacity()
+{
+	return this->_capacity;
+}
+
+void ArrayList::add(int element)
+{
+	if(this->_isFull()) this->_increaseCapacity();
+
+	this->_arr[this->_size] = element;
+	this->_size++;
+}
+
+void ArrayList::add(int index, int element)
+{
+	if(index < 0 || index > this->_size)
+	{
+		throw "index out of valid range";
 	}
 
-	int temp = _pa[_size - 1];
-	_size--;
-	return temp;
-}
+	if(this->_isFull()) this->_increaseCapacity();
 
-// O is constant
-int ArrayList::get(int index) {
-	if (index < 0 || index >= _size) {
-		std::cerr << "Fail to exec get(). Invalid index.";
-		exit(1);
+	// If the element is essentially being added to the end.
+	if(index == this->_size)
+	{
+		this->add(element);
+		return;
 	}
 
-	return _pa[index];
-}
-
-// O is constant
-void ArrayList::set(int index, int num) {
-	if (index < 0 || index >= _size) {
-		std::cerr << "Fail to exec set(). Invalid index.";
-		exit(1);
+	// Shift all elements forward from the last element to the desired
+	// index.
+	for(int i = this->_size - 1; i >= index; i--)
+	{
+		this->_arr[i + 1] = this->_arr[i];
 	}
 
-	_pa[index] = num;
-
+	// Set the element at the index (nothing is there now) and increment
+	// the size.
+	this->_arr[index] = element;
+	this->_size++;
 }
 
-// O(n)
-void ArrayList::add(int index, int num) {
+void ArrayList::push_back(int element)
+{
+	this->add(element);
+}
 
-	// invalid index, call exit()
-	if (index < 0 || index > _size) {
-		std::cerr << "Invalid index. " << std::endl;
-		exit(1);
+void ArrayList::set(int index, int element)
+{
+	if(index < 0 || index >= this->_size)
+	{
+		throw "invalid index given";
 	}
 
-	// valid index, add new element
-	if (!_isFull()) {
-		// case 1: add and shift
-		// case 2: add without shifting
-
-		// shift 0 or more elements
-		for (int i = _size - 1; i >= index; --i) {		// note that (_size - 1)
-			_pa[i + 1] = _pa[i];
-		}
-
-		// set new element
-		_pa[index] = num;
-
-		// manage _size
-		_size++;
-
-	}
-	else {
-		_doubleCapacity();
-		add(index, num);
-	}
+	this->_arr[index] = element;
 }
 
-// O(1)
-void ArrayList::add(int num) {
-
-	if (!_isFull()) {
-		_pa[_size] = num;
-
-		// manage _size
-		_size++;
-	}
-	else {
-		_doubleCapacity();
-		add(num);
-	}
-}
-
-void ArrayList::del(int index) {
-	// TO_DO: implement this function
-
-}
-
-int ArrayList::size() {
-	return _size;
-}
-
-int ArrayList::capacity() {
-	return _capacity;
-}
-
-void ArrayList::traverse() {
-	for (int i = 0; i < _size; ++i) {
-		std::cout << _pa[i] << " ";
-	}
-	std::cout << std::endl;
-}
-
-bool ArrayList::_isFull() {
-	return _size == _capacity;
-}
-
-void ArrayList::_doubleCapacity() {
-	// allocate new space with doubled capacity
-	int* temp = new int[_capacity * 2];
-
-	// copy existing elements over
-	for (int i = 0; i < _size; ++i) {
-		temp[i] = _pa[i];
+int ArrayList::get(int index)
+{
+	if(index < 0 || index >= this->_size)
+	{
+		throw "invalid index given";
 	}
 
-	// update _capacity
-	_capacity *= 2;
+	return this->_arr[index];
+}
 
-	// update _pa
-	delete[] _pa;
-	_pa = temp;
+void ArrayList::del(int index)
+{
+	if(index < 0 || index >= this->_size)
+	{
+		throw "invalid index given";
+	}
+
+	int *temp = new (std::nothrow) int[this->_capacity];
+	if(!temp)
+	{
+		throw "unable to allocate memory for dynamic array";
+	}
+
+	this->_size--;
+	for(int i = index; i < this->_size; i++)
+	{
+		temp[i] = this->_arr[i + 1];
+	}
+
+	delete[] this->_arr;
+	this->_arr = temp;
+}
+
+int ArrayList::pop()
+{
+	if(this->_size == 0)
+	{
+		throw "no elements exist to pop off";
+	}
+
+
+	int *temp = new (std::nothrow) int[this->_capacity];
+	if(!temp)
+	{
+		throw "error allocating memory for dynamic array";
+	}
+
+	for(int i = 0; i < this->_size - 1; i++)
+	{
+		temp[i] = this->_arr[i];
+	}
+
+	// Capture popped value to return.
+	int popped = this->_arr[this->_size - 1];
+
+	// Delete backing array, replace with new one, and decrement size.
+	delete[] this->_arr;
+	this->_arr = temp;
+	this->_size--;
+
+	return popped;
+}
+
+std::string ArrayList::print()
+{
+	std::stringstream ss;
+
+	for(int i = 0; i < this->_size; i++)
+	{
+		ss << this->_arr[i] << " ";
+	}
+
+	return ss.str();
 }

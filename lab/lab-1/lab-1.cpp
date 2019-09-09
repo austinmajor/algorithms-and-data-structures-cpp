@@ -30,7 +30,7 @@ public:
   // Retrieves the size and uses it to allocate an array
   DynamicArray(int size)
   {
-    this->size = this->size;
+    this->size = size;
     this->arr = new int[size];
   }
 
@@ -47,12 +47,12 @@ public:
   }
 
   // Copy Assignment Operator
-  // Performs a deep copy and supports self-assignment of the form x = x
+  // Performs a deep copy and supports self-assignment of the form
   DynamicArray& operator=(const DynamicArray &obj)
   {
     if (this != &obj)
     {
-      arr = new int[obj.size];
+      this->arr = new int[obj.size];
       this->size = obj.size;
       for (int i = 0; i < this->size; i++)
         arr[i] = obj.arr[i];
