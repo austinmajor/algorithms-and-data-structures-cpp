@@ -3,6 +3,7 @@
 // Date: 9/2/19
 
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
@@ -24,8 +25,7 @@ int formulaThree(int n, int a, int b)
     return n * n + a * n + b;
 }
 
-// O(n/2) = O(n)
-// sqrt n + 1 is best
+// O(sqrt(n))
 bool isPrime(int n)
 {
     if (n <= 1)
@@ -33,7 +33,8 @@ bool isPrime(int n)
         return false;
     }
 
-    for (int i = 2; i < n / 2; i++)
+    // sqrt(n) + 1 is most efficient
+    for (int i = 2; i < sqrt(n) + 1; i++)
     {
         if (n % i == 0)
         {
@@ -99,6 +100,13 @@ void generateFormulaThree()
             }
         }
     }
+
+    for(int n=0; n < maxn - 1; n++)
+    {
+        cout << formulaThree(n, maxa, maxb) << " ";
+    }
+    cout  << endl;
+
     cout << "a = " << maxa << endl;
     cout << "b = " << maxb << endl;
     cout << "Max prime #'s = " << maxn - 1 << endl

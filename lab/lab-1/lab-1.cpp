@@ -10,107 +10,107 @@ using namespace std;
 class DynamicArray
 {
 private:
-  // Member variables
-  // An int pointer to hold a dynamically allocated array
-  int *arr;
+    // Member variables
+    // An int pointer to hold a dynamically allocated array
+    int *arr;
 
-  // Holds the size of the array
-  int size;
+    // Holds the size of the array
+    int size;
 
 public:
-  // Default Constructor
-  // Allocates an array of size 10
-  DynamicArray()
-  {
-    this->size = 10;
-    this->arr = new int[this->size];
-  }
-
-  // Paramterized Constructor
-  // Retrieves the size and uses it to allocate an array
-  DynamicArray(int size)
-  {
-    this->size = size;
-    this->arr = new int[size];
-  }
-
-  // Copy Constructor
-  // Performs deep copy
-  DynamicArray(const DynamicArray &obj)
-  {
-    this->size = obj.size;
-    this->arr = new int[this->size];
-    for (int i = 0; i < this->size; i++)
+    // Default Constructor
+    // Allocates an array of size 10
+    DynamicArray()
     {
-      this->arr[i] = obj.arr[i];
+        this->size = 10;
+        this->arr = new int[this->size];
     }
-  }
 
-  // Copy Assignment Operator
-  // Performs a deep copy and supports self-assignment of the form
-  DynamicArray& operator=(const DynamicArray &obj)
-  {
-    if (this != &obj)
+    // Paramterized Constructor
+    // Retrieves the size and uses it to allocate an array
+    DynamicArray(int size)
     {
-      this->arr = new int[obj.size];
-      this->size = obj.size;
-      for (int i = 0; i < this->size; i++)
-        arr[i] = obj.arr[i];
+        this->size = size;
+        this->arr = new int[size];
     }
-    return *this;
-  }
 
-  // Destructor
-  // Recycles allocated memory
-  ~DynamicArray()
-  {
-    delete[] this->arr;
-  }
-
-  // Member Function
-  // Fills array with random #'s from 0-9
-  void FillArray()
-  {
-    for (int i = 0; i < this->size; i++)
+    // Copy Constructor
+    // Performs deep copy
+    DynamicArray(const DynamicArray &obj)
     {
-      this->arr[i] = rand() % 10;
+        this->size = obj.size;
+        this->arr = new int[this->size];
+        for (int i = 0; i < this->size; i++)
+        {
+            this->arr[i] = obj.arr[i];
+        }
     }
-  }
 
-  // Member Function
-  // Insertion Sort
-  // Complexity: O(n^2)
-  void SortArray()
-  {
-    for (int i = 1; i < this->size; i++)
+    // Copy Assignment Operator
+    // Performs a deep copy and supports self-assignment of the form
+    DynamicArray &operator=(const DynamicArray &obj)
     {
-      for (int j = i; j > 0 && this->arr[j] < this->arr[j - 1]; j--)
-      {
-        swap(this->arr[j], this->arr[j - 1]);
-      }
+        if (this != &obj)
+        {
+            this->arr = new int[obj.size];
+            this->size = obj.size;
+            for (int i = 0; i < this->size; i++)
+                arr[i] = obj.arr[i];
+        }
+        return *this;
     }
-  }
 
-  // Member Function
-  // Prints all elements in the array
-  void PrintArray()
-  {
-    for (int i = 0; i < this->size; i++)
+    // Destructor
+    // Recycles allocated memory
+    ~DynamicArray()
     {
-      cout << this->arr[i] << " ";
+        delete[] this->arr;
     }
-    cout << endl;
-  }
+
+    // Member Function
+    // Fills array with random #'s from 0-9
+    void FillArray()
+    {
+        for (int i = 0; i < this->size; i++)
+        {
+            this->arr[i] = rand() % 10;
+        }
+    }
+
+    // Member Function
+    // Insertion Sort
+    // Complexity: O(n^2)
+    void SortArray()
+    {
+        for (int i = 1; i < this->size; i++)
+        {
+            for (int j = i; j > 0 && this->arr[j] < this->arr[j - 1]; j--)
+            {
+                swap(this->arr[j], this->arr[j - 1]);
+            }
+        }
+    }
+
+    // Member Function
+    // Prints all elements in the array
+    void PrintArray()
+    {
+        for (int i = 0; i < this->size; i++)
+        {
+            cout << this->arr[i] << " ";
+        }
+        cout << endl;
+    }
 };
 
 int main()
 {
-  srand(time(NULL));
-  DynamicArray a;
-  a.FillArray();
-  a.PrintArray();
-  a.SortArray();
-  a.PrintArray();
+    srand(time(NULL));
+    DynamicArray a;
+    a.FillArray();
+    a.PrintArray();
+    a.SortArray();
+    a.PrintArray();
 
-  return 0;
+    return 0;
 }
