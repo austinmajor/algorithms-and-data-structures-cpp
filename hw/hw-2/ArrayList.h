@@ -3,34 +3,40 @@
 
 #include <string>
 
-class ArrayList
-{
-    private:
-        int *_arr;
-        int _capacity;
-        int _size;
+template <class Generic>
+class ArrayList {
+	private:
+		Generic* _arr;
+		int _capacity;
+		int _size;
 
-        bool _isFull();
-        void _increaseCapacity();
-    public:
-        ArrayList();
-        ArrayList(int);
-        ArrayList(const ArrayList&);
-        ArrayList& operator=(const ArrayList&);
-        ~ArrayList();
+		bool _isFull();
+		void _increaseCapacity();
+	public:
+		ArrayList();
+		ArrayList(int);
+		ArrayList(const ArrayList&);
+		ArrayList& operator=(const ArrayList&);
+		~ArrayList();
 
-        int size();
-        int capacity();
+		int size();
+		int capacity();
 
-        void add(int);
-        void add(int, int);
-        void set(int, int);
-        void push_back(int);
-        int pop();
-        int get(int);
-        void del(int);
+		void add(Generic);
+		void add(int, Generic);
+		void set(int, Generic);
+		void push_back(Generic);
+		Generic pop();
+		Generic get(int);
+		void del(int);
 
-        std::string print();
+		// Only implemented for template class <car::Model>.
+		std::string print();
+		Generic findByID(int);
+		Generic* findByMake(std::string, int&);
+		Generic* findByModel(std::string, int&);
+		Generic* findByColor(std::string, int&);
+		void delByID(int);
 };
 
 #endif
