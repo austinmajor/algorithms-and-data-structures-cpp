@@ -1,0 +1,11 @@
+CS 400 Lab 4
+Implement a class for doubly linked list. Your doubly linked list should have following members:
+- A head pointer
+- A tail pointer
+- Function: insert at head
+- Function: insert at tail
+- Function: delete a node
+- Function: search a node
+- Function: traverse
+- Function: reverse traverse
+Test your implementation by calling member functions inside main.
