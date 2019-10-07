@@ -1,0 +1,13 @@
+CS 400 Lab 5
+Implement an infix expression to postfix expression convertor and present your code.
+
+Note:
+- Support +, -, *, /, ( and ) in infix expressions.
+- Operands will be nonnegative only.
+- Assume infix expressions are valid and well formatted (one blank space to separate
+operand/operator)
+
+For example,
+- 3 * 4 + 5 ➔ 3 4 * 5 +
+- 3 + 4 * 5 ➔ 3 4 5 * +
+- (3 + 4) * (5 + 6) ➔ 3 4 + 5 6 + *

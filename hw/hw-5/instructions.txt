@@ -1,0 +1,30 @@
+CS 400 Assignment 5
+Recursive/Backtracking: Generating Permutations
+
+Description:
+Mimic the code for N-queen problem (https://introcs.cs.princeton.edu/java/23recursion/Queens.java.html),
+develop a program that generates all permutations for the set {1, 2, 3, 4, 5}.
+The output should contain all 5! = 120 permutations.
+
+Output Sample:
+P#1: 1 2 3 4 5
+P#2: 1 2 3 5 4
+P#3: 1 2 4 3 5
+...
+P#120: 5 4 3 2 1
+
+Hint:
+- Thoroughly study the N-queen problem first.
+- The code for N-queen is very close to the code generating permutations, just some helper functions away.
+- Keep the structure of the enumerate() function. You may change the function head to take in the array size.
+- Implement printPermutation() function and use it to replace printQueens().
+- Implement isConsistent() function for permutation check. This check should be easier than N-queen consistent check.
+
+File_name:
+- permutation.cpp
+
+Grading:
+- compilable and meaningful attemps: 20 points.
+- structure of enumerate(): 30 points
+- helper functions: 40 points.
+- comments, file names and indentation: 10 points.
