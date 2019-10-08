@@ -1,0 +1,41 @@
+CS 400 Assignment 4
+Stack application: postfix expression evaluation.
+
+Description:
+- The stack data structure can be used to evaluate postfix expressions. Please refer to the first 14 pages of this tutorial for postfix expression evaluation: http://www.cs.nthu.edu.tw/~wkhon/ds/ds10/tutorial/tutorial2.pdf
+
+Requirement:
+- deal with single digit positive integers only. Operands and operators are fully separated by space.
+- learn and use STL stack: http://www.cplusplus.com/reference/stack/stack/
+- learn and use isdigit(): http://www.cplusplus.com/reference/cctype/isdigit/
+- take in a postfix arithmetic expression from cin, and evaluate its value.
+- supported operators: +, -, *, /
+- for invalid postfix expression, print out an error message and end the program.
+- output the evaluated value of valid expressions.
+
+Example1:
+- (valid expr) 4 3 - 5 *
+-- push 4 into stack
+-- push 3 into stack
+-- minus operator (-) detected: pop 3 out of stack, as operand_2
+-- pop 4 out of stack, as operand_1
+-- perform operand_1 minus operand_2, then push the result (1) into stack.
+-- push 5 into stack
+-- multiply operator (*) detected: pop 5 out of stack, as operand_2
+-- pop 1 out of stack, as operand_1
+-- perform operand_1 times operand_2, then push the result (5) into stack.
+-- input done. check stack value... output final answer: 5
+
+Example2:
+- (invalid expr) 4 4 3 - 5 * is invalid since the stack will have two numbers inside it.
+- (invalid expr) 4 5 5 - / is invalid due to the divide-by-zero error.
+
+Grading:
+- compilable and meaningful attemps: 20 points.
+- correct usage of STL stack: 20 points, including object creation, push(), top() and pop().
+- correct postfix expression evaluation: 30 points.
+- error handling: 20 points, including divide-by-zero error and invalid expression error
+- comments, file_name and indentation: 10 points.
+
+File_name:
+postfix_eval.cpp
