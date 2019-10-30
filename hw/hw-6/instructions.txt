@@ -1,0 +1,25 @@
+CS 400 Assignment 6
+Round Robin Simulation
+
+Description:
+Write a program that utilizes STL queue (or your own queue implementation) that simulates the round robin process scheduling algorithm.
+
+Requirement:
+- write a class Process that holds following integer information: id, arrival_time, time_needed, finished_time.
+- read and initiate 5 Process objects from associated file (round_robin.txt)
+- file format: id, arrival_time, time_needed
+- once a process is finished, mark its finished_time accordingly.
+- CPU time frame: 4.
+- utilize a queue for process scheduling.
+- store finished processes into a vector (first finished, first stored)
+- output: print information about finished processes from the vector, in the finished order.
+
+File_name:
+- round_robin.cpp
+- You may use extra source files for class Process.
+
+Grading:
+- compilable and meaningful attemps: 20 points.
+- class Process: 10 points.
+- round robin simulation and usage of queue: 60 points.
+- comments, file names and indentation: 10 points.

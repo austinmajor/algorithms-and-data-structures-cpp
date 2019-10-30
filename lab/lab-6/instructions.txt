@@ -1,0 +1,5 @@
+CS 400 Lab 6
+Present following implementations to your TA:
+- Use array (fixed size, non-dynamic) to implement Queue.
+- Use STL list to implement Queue.
+- Use STL Stack to implement Queue.
