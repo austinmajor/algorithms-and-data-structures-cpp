@@ -1,122 +1,135 @@
 #include <iostream>
-
+#include <cstdlib>
 using namespace std;
 
-struct Queue {
-	int front, rear, capacity;
-	int* queue;
-	Queue(int c)
-	{
-		front = rear = 0;
-		capacity = c;
-		queue = new int;
-	}
+// define default capacity of the queue
+#define SIZE 10
 
-	~Queue() { delete[] queue; }
+// Class for queue
+class queue
+{
+private:
+    int *arr;     // array to store queue elements
+    int capacity; // maximum capacity of the queue
+    int front;    // front points to front element in the queue (if any)
+    int rear;     // rear points to last element in the queue
+    int count;    // current size of the queue
 
-	// function to insert an element
-	// at the rear of the queue
-	void queueEnqueue(int data)
-	{
-		// check queue is full or not
-		if (capacity == rear) {
-			printf("\nQueue is full\n");
-			return;
-		}
+public:
+    queue(int size = SIZE); // constructor
+    ~queue();               // destructor
 
-		// insert element at the rear
-		else {
-			queue[rear] = data;
-			rear++;
-		}
-		return;
-	}
-
-	// function to delete an element
-	// from the front of the queue
-	void queueDequeue()
-	{
-		// if queue is empty
-		if (front == rear) {
-			printf("\nQueue is empty\n");
-			return;
-		}
-
-		// shift all the elements from index 2 till rear
-		// to the left by one
-		else {
-			for (int i = 0; i < rear - 1; i++) {
-				queue[i] = queue[i + 1];
-			}
-
-			// decrement rear
-			rear--;
-		}
-		return;
-	}
-
-	// print queue elements
-	void queueDisplay()
-	{
-		int i;
-		if (front == rear) {
-			printf("\nQueue is Empty\n");
-			return;
-		}
-
-		// traverse front to rear and print elements
-		for (i = front; i < rear; i++) {
-			printf(" %d <-- ", queue[i]);
-		}
-		return;
-	}
-
-	// print front of queue
-	void queueFront()
-	{
-		if (front == rear) {
-			printf("\nQueue is Empty\n");
-			return;
-		}
-		printf("\nFront Element is: %d", queue[front]);
-		return;
-	}
+    void dequeue();
+    void enqueue(int x);
+    int peek();
+    int size();
+    bool isEmpty();
+    bool isFull();
 };
 
-// Driver code
-int main(void)
+// Constructor to initialize queue
+queue::queue(int size)
 {
-	// Create a queue of capacity 4
-	Queue q(4);
+    arr = new int[size];
+    capacity = size;
+    front = 0;
+    rear = -1;
+    count = 0;
+}
 
-	// print Queue elements
-	q.queueDisplay();
+// Destructor to free memory allocated to the queue
+queue::~queue()
+{
+    delete arr;
+}
 
-	// inserting elements in the queue
-	q.queueEnqueue(20);
-	q.queueEnqueue(30);
-	q.queueEnqueue(40);
-	q.queueEnqueue(50);
+// Utility function to remove front element from the queue
+void queue::dequeue()
+{
+    // check for queue underflow
+    if (isEmpty())
+    {
+        cout << "UnderFlow\nProgram Terminated\n";
+        exit(EXIT_FAILURE);
+    }
 
-	// print Queue elements
-	q.queueDisplay();
+    cout << "Removing " << arr[front] << '\n';
 
-	// insert element in the queue
-	q.queueEnqueue(60);
+    front = (front + 1) % capacity;
+    count--;
+}
 
-	// print Queue elements
-	q.queueDisplay();
+// Utility function to add an item to the queue
+void queue::enqueue(int item)
+{
+    // check for queue overflow
+    if (isFull())
+    {
+        cout << "OverFlow\nProgram Terminated\n";
+        exit(EXIT_FAILURE);
+    }
 
-	q.queueDequeue();
-	q.queueDequeue();
+    cout << "Inserting " << item << '\n';
 
-	printf("\n\nafter two node deletion\n\n");
+    rear = (rear + 1) % capacity;
+    arr[rear] = item;
+    count++;
+}
 
-	// print Queue elements
-	q.queueDisplay();
+// Utility function to return front element in the queue
+int queue::peek()
+{
+    if (isEmpty())
+    {
+        cout << "UnderFlow\nProgram Terminated\n";
+        exit(EXIT_FAILURE);
+    }
+    return arr[front];
+}
 
-	// print front of the queue
-	q.queueFront();
+// Utility function to return the size of the queue
+int queue::size()
+{
+    return count;
+}
 
-	return 0;
+// Utility function to check if the queue is empty or not
+bool queue::isEmpty()
+{
+    return (size() == 0);
+}
+
+// Utility function to check if the queue is full or not
+bool queue::isFull()
+{
+    return (size() == capacity);
+}
+
+// main function
+int main()
+{
+    // create a queue of capacity 5
+    queue q(5);
+
+    q.enqueue(1);
+    q.enqueue(2);
+    q.enqueue(3);
+
+    cout << "Front element is: " << q.peek() << endl;
+    q.dequeue();
+
+    q.enqueue(4);
+
+    cout << "Queue size is " << q.size() << endl;
+
+    q.dequeue();
+    q.dequeue();
+    q.dequeue();
+
+    if (q.isEmpty())
+        cout << "Queue Is Empty\n";
+    else
+        cout << "Queue Is Not Empty\n";
+
+    return 0;
 }

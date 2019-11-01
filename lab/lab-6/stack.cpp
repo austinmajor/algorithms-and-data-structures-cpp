@@ -1,55 +1,61 @@
 #include <iostream>
-
+#include <stack>
+#include <cstdlib>
 using namespace std;
 
-struct Queue {
-	stack<int> s1, s2;
+// Implement Queue using single stack and recursion
+class Queue {
+	stack<int> s;
 
-	void enQueue(int x)
+public:
+	// Enqueue an item to the queue
+	void enqueue(int data)
 	{
-		// Move all elements from s1 to s2
-		while (!s1.empty()) {
-			s2.push(s1.top());
-			s1.pop();
-		}
-
-		// Push item into s1
-		s1.push(x);
-
-		// Push everything back to s1
-		while (!s2.empty()) {
-			s1.push(s2.top());
-			s2.pop();
-		}
+		// Push item into the first stack
+		s.push(data);
 	}
 
 	// Dequeue an item from the queue
-	int deQueue()
+	int dequeue()
 	{
-		// if first stack is empty
-		if (s1.empty()) {
-			cout << "Q is Empty";
+		// if stack is empty
+		if (s.empty()) {
+			cout << "Underflow!!";
 			exit(0);
 		}
 
-		// Return top of s1
-		int x = s1.top();
-		s1.pop();
-		return x;
+		// pop an item from the stack
+		int top = s.top();
+		s.pop();
+
+		// if stack becomes empty, return the popped item
+		if (s.empty()) {
+			return top;
+		}
+
+		// recur
+		int item = dequeue();
+
+		// push popped item back to the stack
+		s.push(top);
+
+		// return the result of dequeue() call
+		return item;
 	}
 };
 
-// Driver code
 int main()
 {
+	int keys[] = { 1, 2, 3, 4, 5 };
 	Queue q;
-	q.enQueue(1);
-	q.enQueue(2);
-	q.enQueue(3);
 
-	cout << q.deQueue() << '\n';
-	cout << q.deQueue() << '\n';
-	cout << q.deQueue() << '\n';
+	// insert above keys into the queue
+	for (int key : keys) {
+		q.enqueue(key);
+	}
+
+	cout << q.dequeue() << '\n';	// print 1
+	cout << q.dequeue() << '\n';	// print 2
 
 	return 0;
 }
