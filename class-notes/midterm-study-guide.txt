@@ -1,0 +1,25 @@
+CS 400 Fall 2019 Midterm Review Guide
+Algorithms:
+- Insertion sort
+- Binary search
+Time complexity:
+- Big oh for every non-recursive function, especially for data structure functions.
+Data structures:
+- ArrayList:
+o Study the source code well. Header file will be given so expect to implement member
+functions.
+- Linked List:
+o Study the source code well. Lean how to maintain the head pointer of a linked list, how
+to traverse(), add_at_tail() and delete().
+- Stack implementation:
+o Implement stack based on ArrayList.
+o Implement stack based on STL list (linked list.)
+- Stack applications:
+o decimal number to binary number conversion,
+o parentheses matching
+o Palindrome string checker
+o Postfix expression evaluation (hw 4)
+o Infix to postfix conversion (lab 5)
+- Backtracking:
+o N-queen problem
+o Permutation generator (hw 5)

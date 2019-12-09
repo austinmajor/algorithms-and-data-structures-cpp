@@ -1,0 +1,21 @@
+Fall 2019 CS 400 Final Exam Review Guide
+Queue. Expect to have zero or one short answer question from this topic.
+- Implementation: array based and linked-list based.
+- Big Oh for main queue operations.
+- Array based queue: wrap-around technique.
+- Round-robin process scheduling algorithm.
+- Basic operations of STL queue.
+Binary Tree. Expect to have one or two short answer questions from this topic.
+- Tree’s structure and property (e.g., number of leaves, height, max nodes)
+- Tree traversal: in-level (using queue), pre-order, in-order and post-order.
+- Binary search tree’s construction, insertion, deletion and search.
+- Big Oh for binary search tree’s main operations.
+- Huffman coding.
+- Print the path from root to leaves.
+Hash table. Expect to have one short answer question from this topic.
+- Notation: key, value and hash function.
+- Properties of hash function, some examples of hash function.
+- Collision process (e.g., re-hashing, quadratic probe, linked list)
+- Big Oh for hash table’s main operations.
+- Basic operations of STL unordered_map.
+Quick sort. Expect to have one short answer questions from this topic.
