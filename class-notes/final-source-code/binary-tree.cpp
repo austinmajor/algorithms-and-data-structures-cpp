@@ -1,12 +1,10 @@
 // 20191028_binaryTree.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 
 struct Node {
 	char ch;
-	Node* left; 
-	Node* right; 
+	Node* left;
+	Node* right;
 	Node(char ch) : ch(ch), left(nullptr), right(nullptr) {}
 };
 
@@ -37,7 +35,7 @@ void post_order(Node* root) {
 int main()
 {
 	Node* root = new Node('A');
-	
+
 	root->left = new Node('B');
 	root->right = new Node('C');
 
@@ -46,8 +44,6 @@ int main()
 	root->right->left = new Node('F');
 	root->right->right = new Node('G');
 
-
-	pre_order(root);
-	std::cout << "\n";
 	in_order(root);
+	std::cout << "\n";
 }

@@ -1,6 +1,4 @@
 // 20191023_queue_implementation.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 #include <list>
 #include <queue>
@@ -8,11 +6,11 @@
 
 template <class T>
 class StackQueue {
-private: 
+private:
 	std::stack<T> s1;
 	std::stack<T> s2;
 
-public: 
+public:
 	StackQueue() {}
 	void enqueue(T data) { s1.push(data); }
 	T dequeue() {
@@ -26,7 +24,7 @@ public:
 
 		T temp = s2.top();
 		s2.pop();
-		return temp; 
+		return temp;
 	}
 
 	bool isFull() { return false; }
@@ -45,5 +43,5 @@ int main() {
 		std::cout << q.dequeue() << std::endl;
 	}
 
-	return 0; 
+	return 0;
 }

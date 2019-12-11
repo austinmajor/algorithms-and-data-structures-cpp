@@ -1,16 +1,14 @@
 // 20191104_bst.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 
 struct Node {
-	int data; 
-	Node* left; 
-	Node* right; 
+	int data;
+	Node* left;
+	Node* right;
 	Node(int num) : data(num), left(nullptr), right(nullptr) {}
 };
 
-using NodePtr = Node *; 
+using NodePtr = Node *;
 
 void pre_order(Node* root) {
 	if (root) {
@@ -52,26 +50,26 @@ void insert1(NodePtr& p, int val) {
 }
 
 NodePtr insert2(NodePtr& p, int val) {
-	if (!p) 
+	if (!p)
 		return new Node(val);
 
 	if (p->data < val)
 		p->right = insert2(p->right, val);
 	else if (p->data > val)
 		p->left = insert2(p->left, val);
-	
-	return p; 
+
+	return p;
 }
 
 bool search1(NodePtr p, int val) {
 	if (!p)
-		return false; 
+		return false;
 	if (p->data < val)
 		return search1(p->right, val);
 	else if (p->data > val)
 		return search1(p->left, val);
 
-	return true; 
+	return true;
 }
 
 NodePtr search2(NodePtr p, int val) {
@@ -91,7 +89,7 @@ int largestLeft(NodePtr p);
 
 
 NodePtr del(NodePtr& p, int num) {
-	// target not found 
+	// target not found
 	if (!p) {
 		std::cerr << "Target not found. " << std::endl;
 		return nullptr;
@@ -103,7 +101,7 @@ NodePtr del(NodePtr& p, int num) {
 	else if (num > p->data) {
 		p->right = del(p->right, num);
 	}
-	else {		// on the node to be del 
+	else {		// on the node to be del
 		if (p->left == nullptr && p->right == nullptr) {	// case: when the node is a leaf node
 			delete p;
 			return nullptr;
@@ -113,7 +111,7 @@ NodePtr del(NodePtr& p, int num) {
 			delete p;
 			return temp;
 		}
-		else if (p->right == NULL) {	// case: when the node has left child node 
+		else if (p->right == NULL) {	// case: when the node has left child node
 			Node* temp = p->left;
 			delete p;
 			return temp;
@@ -122,18 +120,18 @@ NodePtr del(NodePtr& p, int num) {
 			p->data = largestLeft(p->left);
 			p->left = del(p->left, p->data);
 		}
-	} 
+	}
 	return p;
 }
 
-// pre-condition: p is not NULL; 
+// pre-condition: p is not NULL;
 int largestLeft(NodePtr p) {
 	if (!p) {
 		std::cerr << "nullptr passed to largetstLeft(). " << std::endl;
 		exit(1);
 	}
-	
-	int result = p->data;	
+
+	int result = p->data;
 	while (p) {
 		result = p->data;
 		p = p->right;
@@ -146,7 +144,7 @@ int largestLeft(NodePtr p) {
 
 int main()
 {
-	NodePtr root = nullptr; 
+	NodePtr root = nullptr;
 	int values[14] = { 11, 6, 8, 19, 4, 10, 5, 17, 43, 49, 31, 2, 7, 42 };
 
 	for(int i : values)
@@ -161,7 +159,7 @@ int main()
 */
 
 
-	//NodePtr root2 = nullptr; 
+	//NodePtr root2 = nullptr;
 	//int values2[] = { 5, 1, 10, 6 };
 	//for (int i : values2)
 	//	root2 = insert2(root2, i);
@@ -171,7 +169,7 @@ int main()
 	using std::cout;
 	using std::endl;
 
-	cout << search1(root, 18) << endl; 
+	cout << search1(root, 18) << endl;
 	cout << search1(root, 7) << endl;
 
 	cout << search2(root, 18) << endl;

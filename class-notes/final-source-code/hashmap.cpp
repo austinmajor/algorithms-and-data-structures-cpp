@@ -1,6 +1,4 @@
 // 20191113_hashmap.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 #include <unordered_map>
 
@@ -16,13 +14,13 @@ int main()
 	// erase
 	umap.erase(5);
 
-	// search 
+	// search
 	if (umap.find(5) != umap.end())
 		std::cout << "key 5 found in umap. " << "its value: " << umap[5] << std::endl;
 	else
 		std::cout << "could not find key 5. \n";
 
-	// iterate 
+	// iterate
 	for (auto i : umap)
 		std::cout << i.first << ": " << i.second << std::endl;
 
@@ -30,9 +28,9 @@ int main()
 		std::cout << i->first << ": " << i->second << std::endl;
 
 
-	// hash function 
+	// hash function
 
-	// function pointer 
+	// function pointer
 	auto hash_func = umap.hash_function();
 
 	for (int i = 1; i < 5; ++i)

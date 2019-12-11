@@ -1,15 +1,13 @@
 // 20191021_queue.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 
 class MyQueue{
-private: 
+private:
 	int a[5];
 	int tail;
-	int head; 
+	int head;
 
-public: 
+public:
 	MyQueue() :tail(0), head(0) {}
 
 	void enqueue(int num);
@@ -23,7 +21,7 @@ void MyQueue::enqueue(int num) {
 		std::cerr << "Cannot enequeue. Queue is full. \n";
 		exit(1);
 	}
-	
+
 	a[tail] = num;
 	tail = (tail + 1) % 5;
 }
@@ -37,20 +35,20 @@ int MyQueue::dequeue() {
 	int temp = a[head];
 	head = (head + 1) % 5;
 
-	return temp; 
+	return temp;
 }
 
 bool MyQueue::isEmpty() {
-	return head == tail; 
+	return head == tail;
 }
 
 bool MyQueue::isFull() {
-	return (tail + 1) % 5 == head; 
+	return (tail + 1) % 5 == head;
 }
 
 int main()
 {
-	using namespace std; 
+	using namespace std;
 	MyQueue q;
 
 	q.enqueue(1);

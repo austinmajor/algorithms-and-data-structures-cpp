@@ -1,6 +1,4 @@
 // quick_sort.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 
 using std::cout;
@@ -13,11 +11,11 @@ void print(int[], int);
 
 int main()
 {
-	
+
 	int a[] = { 4, 5, 3, 2, 20, 9, 99, 0, 11};
 	int size = sizeof(a) / sizeof(int);
 	print(a, size);
-	quick(a, 0, size - 1);	// NOT size: since the last valid index is size-1 
+	quick(a, 0, size - 1);	// NOT size: since the last valid index is size-1
 	print(a, size);
 
 	return 0;
@@ -52,7 +50,7 @@ void swap(int& x, int& y) {
 
 void print(int a[], int size) {
 	for (int i = 0; i < size; ++i) {
-		cout << a[i] << " "; 
+		cout << a[i] << " ";
 	}
 	cout << endl;
 }
